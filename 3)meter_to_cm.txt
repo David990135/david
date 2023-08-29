@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class feet;
+class meter;
+meter addm(meter pm, feet pf);
+
+class meter{
+public:
+        int m,c;
+        void getm(){
+                cout<<"enter meter value"<<endl;
+                cin>>m;
+                cout<<"enter centi value"<<endl;
+                cin>>c;
+        }
+friend meter addm(meter,feet);
+friend feet addf(meter, feet);
+};
+
+class feet{
+public:
+int f,i;
+        void getf(){
+                cout<<"enter feet value"<<endl;
+                cin>>f;
+                cout<<"enter inches value"<<endl;
+                cin>>i;
+        }
+friend meter addm(meter,feet);
+friend feet addf(meter, feet);
+};
+meter addm(meter pm,feet pf){
+        int cm = pm.m * 100 + pm.c + (pf.f * 12 * 2.54) + (pf.i * 2.54);
+        meter m;
+        m.m = cm / 100;
+        m.c = cm % 100;
+        return m;
+}
+feet addf(meter pm,feet pf){
+        int inch = pm.m * 100 * 2.54 + pm.c * 2.54 + (pf.f * 12) + pf.i;
+        feet f;
+        f.f = inch / 12;
+  f.i = inch % 12;
+        return f;
+}
+
+
+int main(){
+        meter m;
+        feet f;
+        m.getm();
+        f.getf();
+        meter addedm = addm(m, f);
+        feet addedf = addf(m, f);
+
+        cout << "Added into meters: " << addedm.m << ":" << addedm.c << endl;
+        cout << "Added into feet: " << addedf.f << ":" << addedf.i << endl;
+        return 0;
+}
+

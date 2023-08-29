@@ -1,0 +1,34 @@
+
+#include<iostream>
+using namespace std;
+class Phone
+{
+private:
+string areacode;
+string excode;
+string number;
+
+public:
+void setPhone(string a,string e,string n)
+{
+areacode = a;
+excode = e;
+number = n;
+}
+void display()
+{
+cout<<"("<<areacode<<")"<<excode<<"-"<<number<<endl;
+}
+};
+int main()
+{
+Phone p1,p2;
+p1.setPhone("044","234","8900");
+p1.display();
+string a,e,n;
+cout <<"Enter Phone Number in the Format: areaCode Exchange Number ->"<<endl;
+cin >>a>>e>>n;
+p2.setPhone(a,e,n);
+p2.display();
+return 0;
+}

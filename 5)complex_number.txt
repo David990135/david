@@ -1,0 +1,25 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+ class Complex{
+public:
+  int real,img;
+Complex(){
+       real=0;
+       img=0;
+       }
+    Complex s(int a,int b){
+            real=a;
+            img=b;
+           }
+        Complex add(int a,Complex s){
+         s.real+=a;
+       cout<<s.real<<"+"<<s.img<<"i"<<endl;
+        }
+     };
+  int main(){
+   Complex ob;
+   ob.s(5,4);
+   ob.add(4,ob);
+    return 0;
+   }

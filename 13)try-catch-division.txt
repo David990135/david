@@ -1,0 +1,46 @@
+
+# include<bits/stdc++.h>
+using namespace std;
+
+double input(){
+        double a;
+                try{
+                        cout<<"Enter the Number"<<endl;
+                        cin>>a;
+                        if(cin.fail()){
+                                throw(a);
+                        }
+                }
+                catch(double a){
+                        cout<<"it is non double type"<<endl;
+                        exit(0);
+                }
+                return a;
+
+};
+
+double calculate(double a,double b){
+try{
+        if(b==0){
+                throw b;
+        }
+        return a/b;
+}
+
+catch(double b){
+        cout<<"cant divide by zero"<<endl;
+        }
+
+};
+
+int main(){
+
+        double a,b;
+
+        a=input();
+        b=input();
+        double c;
+        c=calculate(a,b);
+        cout<<"Result is "<<c<<endl;
+  return 0;
+}

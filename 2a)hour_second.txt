@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+class Time
+{
+int hours;
+int minutes;
+int secs;
+public:
+int convertIntoSeconds(int h,int m,int s)
+{
+hours = h;
+minutes = m;
+secs = s;
+int totalsecs = hours*3600 + minutes*60 +secs;
+return totalsecs;
+}
+};
+int main()
+{
+int h,m,s;
+char temp;
+cout <<"Enter time in the format HH:MM:SS ->"<<endl;
+cin >>h >>temp >>m >>temp >>s;
+Time t1;
+int result = t1.convertIntoSeconds(h,m,s);
+cout<<"Time in seconds is: "<<result<<" seconds";
+return 0;
+}

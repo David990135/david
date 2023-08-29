@@ -1,0 +1,36 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+class rectangle{
+public:
+        int length;
+        int breadth;
+        rectangle(){
+                length=0;
+                breadth=0;
+        }
+        rectangle &setdimensions(const int& len,const int& br){
+                length=len;
+                breadth=br;
+                return *this;
+        }
+        int computearea(){
+                int area;
+                area=length*breadth;
+                return area;
+        }
+        int computeperimeter(){
+                int p;
+                p=2*(length+breadth);
+                return p;
+        }
+};
+  int main(){
+  rectangle r;
+  r.setdimensions(5,4);
+  int x,y;
+  x=r.computearea();
+  y=r.computeperimeter();
+   cout<<" Area o rectangle is "<<x<<"\n"<<" perimeter of rectangle is "<<y<<endl;
+   return 0;
+  }

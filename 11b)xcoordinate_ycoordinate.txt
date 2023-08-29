@@ -1,0 +1,28 @@
+
+#include <iostream>
+using namespace std;
+
+    template <typename T>
+    class Point{
+    public:
+        T x;
+        T y;
+        Point(T a=0,T b=0):x(a),y(b){}
+        Point operator+(Point &second){
+            Point result;
+            result.x = x+second.x;
+            result.y = y+second.y;
+            return result;
+        }
+    };
+
+int main() {
+    Point<int> point1(1,2);
+    Point<int> point2(3,4);
+    Point<int> point3 = point1 + point2;
+
+    cout << "Point 1: (" << point1.x << ", " << point1.y << ")" << endl;
+    cout << "Point 2: (" << point2.x << ", " << point2.y << ")" << endl;
+    cout << "Point 3: (" << point3.x << ", " << point3.y << ")" << endl;
+    return 0;
+}

@@ -1,0 +1,73 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+class employee{
+        string name;
+        int ID;
+        char gender;
+public:
+        void getempdetails(){
+                cout<<"enter employee name "<<endl;
+                cin>>name;
+
+                cout<<"Enter ID "<<endl;
+                cin>>ID;
+
+                cout<<"enter the gender "<<endl;
+                cin>>gender;
+        }
+        void printempdetails(){
+                cout<<"name of employee is "<<name<<endl;
+                cout<<"Employee ID is "<<ID<<endl;
+                cout<<"Employee Gender "<<gender<<endl;
+        }
+};
+class dept:public employee{
+        string deptname;
+        string work;
+public:
+        void getdeptdet(){
+                cout<<"enter department of employee "<<endl;
+                cin>>deptname;
+
+                cout<<"Enter work assigned "<<endl;
+                cin>>work;
+        }
+
+        void printdeptdet(){
+                cout<<"department of employee is "<<deptname<<endl;
+                cout<<"Employee work is "<<work<<endl;
+        }
+
+};
+class loan:public employee{
+        string loandet;
+  string loanamt;
+public:
+        void getloandet(){
+                cout<<"enter loan details "<<endl;
+                cin>>loandet;
+
+                cout<<"Enter loan amount "<<endl;
+                cin>>loanamt;
+        }
+
+        void printloandet(){
+                cout<<"loan details of employee "<<loandet<<endl;
+                cout<<"loan amount is "<<loanamt<<endl;
+        }
+};
+
+int main(){
+dept d;
+loan l;
+
+l.getempdetails();
+d.getdeptdet();
+l.getloandet();
+l.printempdetails();
+d.printdeptdet();
+l.printloandet();
+
+return 0;
+}

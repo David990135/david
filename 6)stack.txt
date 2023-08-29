@@ -1,0 +1,83 @@
+#include <iostream>
+#include<stdlib.h>
+
+using namespace std;
+
+int Max=4;
+
+class Stack{
+    int top;
+    int arr[10];
+
+    public:
+    Stack()
+    {
+        top=-1;
+    }
+
+    Stack& operator+(int a){
+        if (top==Max-1){
+        cout<<"Stack overflow"<<endl;
+        return *this;
+        }
+
+        else{
+        arr[++top]=a;
+        return *this;
+        }
+
+    }
+
+    int operator--(int){
+        if(top==-1){
+        cout<<"Stack underflow"<<endl;
+        return -1;
+        }
+
+        else
+        return arr[top--];
+    }
+
+    friend ostream& operator<<(ostream &out,const Stack& s1){
+        if(s1.top==-1)
+        out<<"The stack is empty"<<endl;
+  else
+        for(int i=0;i<=s1.top;i++){
+            out<<s1.arr[i]<<' ';
+            out<<endl;
+        }
+        return out;
+    }
+};
+
+int main()
+{
+    int a,choice=0;
+    Stack obj1;
+   cout<<"1:push";
+cout<<"\n2:pop";
+cout<<"\n3:display";
+    while(choice<5){
+    cout<<"\nenter the choice"<<endl;
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:cout<<"Enter the element to be pushed into the stack"<<endl;
+        cin>>a;
+        obj1=obj1+a;
+        break;
+
+        case 2:cout<<"The poped element is "<<obj1--<<endl;
+        break;
+
+        case 3:cout<<"The elements in the stack are"<<endl;
+        cout<<obj1;
+        break;
+
+        case 4:exit(0);
+        break;
+    }
+    }
+
+    return 0;
+}

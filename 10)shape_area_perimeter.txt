@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cmath>
+
+class Shape {
+protected:
+    float area, perimeter;
+
+public:
+    virtual void initialize() = 0;
+    virtual float computeArea() = 0;
+    virtual float computePerimeter() = 0;
+};
+
+class Triangle : public Shape {
+private:
+    float side1, side2, side3;
+
+public:
+    void initialize() {
+        std::cout << "Enter the sides of the Triangle: ";
+        std::cin >> side1 >> side2 >> side3;
+    }
+
+    float computeArea() {
+        float s = (side1 + side2 + side3) / 2.0;
+        area = std::sqrt(s * (s - side1) * (s - side2) * (s - side3));
+        return area;
+    }
+
+    float computePerimeter()  {
+        perimeter = side1 + side2 + side3;
+        return perimeter;
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    float length, width;
+
+public:
+    void initialize() {
+        std::cout << "Enter the length and width of the Rectangle: ";
+        std::cin >> length >> width;
+ }
+
+    float computeArea() {
+        area = length * width;
+        return area;
+    }
+
+    float computePerimeter() {
+        perimeter = 2 * (length + width);
+        return perimeter;
+    }
+};
+
+int main() {
+    Shape* shapePtr;
+    Triangle triangle;
+    Rectangle rectangle;
+
+    shapePtr = &triangle;
+    shapePtr->initialize();
+    std::cout << "Triangle Area: " << shapePtr->computeArea() << std::endl;
+    std::cout << "Triangle Perimeter: " << shapePtr->computePerimeter() << std::endl;
+
+    shapePtr = &rectangle;
+    shapePtr->initialize();
+    std::cout << "Rectangle Area: " << shapePtr->computeArea() << std::endl;
+    std::cout << "Rectangle Perimeter: " << shapePtr->computePerimeter() << std::endl;
+
+    return 0;
+}

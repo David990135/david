@@ -1,0 +1,64 @@
+#include <iostream>
+
+template<typename T>
+class Calculator {
+public:
+    T add(T a, T b) {
+        return a + b;
+    }
+
+    T subtract(T a, T b) {
+        return a - b;
+    }
+
+    T multiply(T a, T b) {
+        return a * b;
+    }
+
+    T divide(T a, T b) {
+        if (b == 0) {
+            std::cout << "Error: Cannot divide by zero!" << std::endl;
+            return static_cast<T>(0);
+        }
+        return a / b;
+    }
+};
+
+int main(){
+    Calculator<double> calculator;
+
+    double num1, num2;
+    char op;
+
+    std::cout << "Enter the first number: ";
+    std::cin >> num1;
+
+    std::cout << "Enter the operator (+, -, *, /): ";
+    std::cin >> op;
+
+    std::cout << "Enter the second number: ";
+    std::cin >> num2;
+
+    double result;
+    switch (op) {
+ case '+':
+            result = calculator.add(num1, num2);
+            break;
+        case '-':
+            result = calculator.subtract(num1, num2);
+            break;
+        case '*':
+            result = calculator.multiply(num1, num2);
+            break;
+        case '/':
+            result = calculator.divide(num1, num2);
+            break;
+        default:
+            std::cout << "Error: Invalid operator!" << std::endl;
+            return 1;
+    }
+
+    std::cout << "Result: " << result << std::endl;
+
+    return 0;
+}

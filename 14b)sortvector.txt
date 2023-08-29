@@ -1,0 +1,44 @@
+ #include <iostream>
+  #include <vector>
+   #include <numeric>
+   #include <algorithm>
+  
+   using std::cout;
+   using std::cin;
+   using std::endl;
+   using std::vector;
+  using std::accumulate;
+  using std::sort;
+ 
+  int main() {
+      vector<int> v;
+      int push = 1;
+      int x;
+ 
+      cout << "Pushing into Vector...\n";
+      while (push != 0) {
+          cout << "Enter an integer element: ";
+          cin >> x;
+          v.push_back(x);
+          cout << "Do you want to push another element (0-NO / 1-YES) ? ";
+          cin >> push;
+      }
+ 
+      cout << "Vector: ";
+      for(vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+          cout << *it << " ";
+      }
+      cout << endl;
+ 
+      sort(v.begin(), v.end());
+ 
+      cout << "Sorted vector: ";
+      for(auto x : v) {
+          cout << x << " ";
+      }
+      cout << endl;
+ 
+      cout << "All Element Sum: " << accumulate(v.begin(), v.end(), 0) << endl;
+ 
+      return 0;
+  }
