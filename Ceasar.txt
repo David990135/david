@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+string alphabets = "abcdefghijklmnopqrstuvwxyz";
+string caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+string nums = "0123456789";
+string encrypt(string str, int key) {
+    int i, size = str.size();
+    for(i = 0; i < str.size(); i++) {
+        if(!isalnum(str[i])) continue;
+        else if(isdigit(str[i])) str[i] = nums[(str[i] - '0' + key) % 10];
+        else if(str[i] >= 'A' && str[i] <= 'Z') str[i] = caps[(str[i] - 'A' + key) % 26];
+        else str[i] = alphabets[(str[i] - 'a' + key) % 26];
+    }
+    return str;
+}
+string decrypt(string str, int key) {
+    int i, size = str.size();
+    for(i = 0; i < str.size(); i++) {
+        if(!isalnum(str[i])) continue;
+        else if(isdigit(str[i])) str[i] = nums[(str[i] - '0' - key + 10) % 10];
+        else if(str[i] >= 'A' && str[i] <= 'Z') str[i] = caps[(str[i] - 'A' - key + 26) % 26];
+        else str[i] = alphabets[(str[i] - 'a' - key + 26) % 26];
+    }
+    return str;
+}
+int main() {
+    string str, encryptedString;
+    int key;
+    cout<<"Enter the string to be encrypted"<<endl;
+    getline(cin, str);
+    cout<<"Enter the value of Key (0 - 9)"<<endl;
+    cin>>key;
+    encryptedString = encrypt(str, key);
+    cout<<"Encrypted String: "<<encryptedString<<endl;
+    cout<<"Decrypted String: "<<decrypt(encryptedString, key)<<endl;
+    return 0;
+}

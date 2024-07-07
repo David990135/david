@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Packet {
+    int time;
+    int size;
+};
+
+int main() {
+    int num_packets, bucket_size, output_rate;
+    cout << "Enter the number of packets: ";
+    cin >> num_packets;
+
+    vector<Packet> packets(num_packets);
+    cout << "Enter packets in the order of their arrival time\n";
+    for (int i = 0; i < num_packets; ++i) {
+        cout << "Enter the time and size: ";
+        cin >> packets[i].time >> packets[i].size;
+    }
+
+    cout << "Enter the bucket size: ";
+    cin >> bucket_size;
+
+    cout << "Enter the output rate: ";
+    cin >> output_rate;
+
+    int bucket_content = 0;
+    for (int i = 0; i < num_packets; ++i) {
+        cout << "At time " << packets[i].time << endl;
+        cout << packets[i].size << " byte packet is inserted\n";
+        if (bucket_content + packets[i].size <= bucket_size) {
+            bucket_content += packets[i].size;
+            cout << packets[i].size << " bytes transferred\n";
+        } else {
+            cout << packets[i].size << " byte packet is discarded\n";
+        }
+        if (bucket_content >= output_rate) {
+            cout << "Packets in the bucket " << bucket_content << " bytes\n";
+            bucket_content -= output_rate;
+        } else {
+            cout << "Packets in the bucket 0 byte\n";
+            bucket_content = 0;
+        }
+        cout << endl;
+    }
+
+    return 0;
+}

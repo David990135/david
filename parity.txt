@@ -1,0 +1,48 @@
+#include<iostream>
+#include<string>
+using namespace std;
+string sender(string str){
+        int key, i, count = 0;
+        cout<<"Enter the value of Key: \nChoose 1 for Even Parity and 2 for Odd Parity"<<endl;
+        cin>>key;
+        for(i = 0; i < str.size(); i++){
+                if(str[i] == '1') count++;
+        }
+        if(key == 1) {
+                if(count % 2 == 0) {
+                        str += '0';     // Even Parity
+                } else {
+                        str += '1';
+                }
+        } else {
+                if(count % 2 == 0) {
+                        str += '1';     // Odd Parity
+                } else {
+                        str += '0';
+                }
+        }
+        return str;
+}
+bool receiver(string str){
+        int i, count = 0, key;
+        for(i = 0; i < str.size(); i++) {
+                if(str[i] == '1') count++;
+        }
+        cout<<"Total 1 Bits in the message: "<<count<<endl;
+        cout<<"Received parity Bit "<<str[str.size() - 1] - '0'<<endl;
+        cout<<"Calculated Parity Bit "<<count % 2<<endl;
+        return count % 2 == str[str.size() - 1] - '0';
+}
+int main(){
+        string str;
+        cout<<"Enter Data to be sent: "<<endl;
+        cin>>str;
+        string sentStr = sender(str);
+        cout<<"String data that is sent: "<<sentStr<<endl;
+        if(receiver(sentStr) == true) {
+                cout<<"String received is correct"<<endl;
+        } else {
+                cout<<"String received has been corrupted"<<endl;
+        }
+        return 0;
+}

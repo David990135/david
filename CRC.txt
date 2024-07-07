@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string>
+using namespace std;
+string calculateXorDivison(string dividend, string divisor) {
+    int i;
+    while(dividend.size() >= divisor.size()) {
+        if(dividend[0] == '0') dividend.erase(dividend.begin());
+        else {
+            for(i = 0; i < divisor.size(); i++) {
+                if(divisor[i] == dividend[i]) dividend[i] = '0';
+                else dividend[i] = '1';
+            }
+        }
+    }
+    cout<<"Dividend: "<<dividend<<endl;
+    return dividend;
+}
+string calcCrcBit(string str, string crcGenerator) {
+    int zeroCount = crcGenerator.size() - 1, i;
+    for(i = 0; i < zeroCount; i++) str += '0';
+    string crcBit(calculateXorDivison(str, crcGenerator));
+    return crcBit;
+}
+bool crcCheck(string str, string crcGenerator, string crcBit) {
+    int i;
+    str += crcBit;
+    string remainder = calculateXorDivison(str, crcGenerator);
+    bool valid = true;
+    for(i = 0; i < remainder.size(); i++) {
+        if(remainder[i] == '1') {
+            valid = false;
+            break;
+        }
+    }
+    return valid;
+}
+int main() {
+    string str, crcGenerator;
+    cout<<"Enter the string to be sent"<<endl;
+    cin>>str;
+    cout<<"Enter the CRC Generator string"<<endl;
+    cin>>crcGenerator;
+    string crcBit = calcCrcBit(str, crcGenerator);
+    cout<<"String to be sent is: "<<str + crcBit<<endl;
+    cout<<"Calculated crc bits are: "<<crcBit<<endl;
+    if(crcCheck(str, crcGenerator, crcBit)) {
+        cout<<"Data received is correct"<<endl;
+    } else {
+        cout<<"Data received is corrupted"<<endl;
+    }
+    return 0;
+}
