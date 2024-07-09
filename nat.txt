@@ -1,0 +1,10 @@
+int fa0/0
+ip nat inside
+exit
+int serial 0/0/0
+ip ant outside
+exit
+ip nat inside source static ip of pc1 50.0.0.1
+ip nat inside source static ip of pc2 50.0.0.2
+ip nat inside source static ip of pc3 50.0.0.3
+exit

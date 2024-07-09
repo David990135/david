@@ -1,0 +1,5 @@
+access-list 1 deny host ip address
+access-list 1 permit any
+int fa0/0
+ip access-group 1 out
+exit
