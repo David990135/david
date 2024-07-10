@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <bitset>
+
+using namespace std;
+
+string computeChecksum(string data) {
+    int sum = 0;
+    for (char c : data) {
+        sum += static_cast<int>(c);
+    }
+    sum = ~sum; 
+    return bitset<8>(sum).to_string(); 
+}
+
+void displaySegments(string data) {
+    for (char c : data) {
+        cout << bitset<8>(static_cast<int>(c)) << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    string data;
+    cout << "Enter data: ";
+    getline(cin, data);
+
+    cout << "Sender side:" << endl;
+    cout << "Segments: ";
+    displaySegments(data);
+
+    string checksum = computeChecksum(data);
+    cout << "Checksum: " << checksum << endl;
+
+    cout << "Receiver side:" << endl;
+    cout << "Segments: ";
+    displaySegments(data);
+
+    string receivedChecksum;
+    cout << "Enter received checksum: ";
+    cin >> receivedChecksum;
+
+    if (receivedChecksum == checksum) {
+        cout << "Result: Data received successfully" << endl;
+    } else {
+        cout << "Result: Error in received data" << endl;
+    }
+
+    return 0;
+}
